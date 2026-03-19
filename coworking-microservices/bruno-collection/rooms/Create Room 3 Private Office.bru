@@ -1,0 +1,21 @@
+meta {
+  name: Create Room 3 - Private Office Marseille
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{roomUrl}}/api/rooms
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Bureau Prive Gamma",
+    "city": "Marseille",
+    "capacity": 4,
+    "type": "PRIVATE_OFFICE",
+    "hourlyRate": 40.00
+  }
+}

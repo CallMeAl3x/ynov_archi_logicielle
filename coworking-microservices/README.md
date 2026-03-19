@@ -122,16 +122,3 @@ curl -X POST http://localhost:8083/api/reservations \
 | member-deleted | member-service | reservation-service | Supprimer toutes reservations du membre |
 | member-suspend | reservation-service | member-service | Suspendre le membre |
 | member-unsuspend | reservation-service | member-service | Desuspendre le membre |
-
-## Technologies
-
-- Java 17
-- Spring Boot 3.2.0
-- Spring Cloud 2023.0.0
-- Spring Cloud Netflix Eureka
-- Spring Cloud Gateway
-- Spring Cloud Config
-- Spring Cloud OpenFeign
-- Apache Kafka
-- H2 Database
-- SpringDoc OpenAPI 2.3.0

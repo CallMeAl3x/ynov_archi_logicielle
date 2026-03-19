@@ -1,0 +1,19 @@
+meta {
+  name: Create Member BASIC
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{memberUrl}}/api/members
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "fullName": "Paul Durand",
+    "email": "paul@example.com",
+    "subscriptionType": "BASIC"
+  }
+}

@@ -12,4 +12,7 @@ public interface MemberClient {
 
     @GetMapping("/api/members/{id}/suspended")
     boolean isMemberSuspended(@PathVariable("id") Long id);
+
+    @GetMapping("/api/members/{id}/max-bookings")
+    int getMaxBookings(@PathVariable("id") Long id);
 }

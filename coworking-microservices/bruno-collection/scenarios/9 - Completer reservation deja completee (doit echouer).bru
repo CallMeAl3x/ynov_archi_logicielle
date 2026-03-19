@@ -1,0 +1,17 @@
+meta {
+  name: 9 - Completer reservation deja completee (doit echouer)
+  type: http
+  seq: 15
+}
+
+docs {
+  ## Scenario State Pattern
+  Tenter de completer une reservation deja COMPLETED.
+  Doit retourner 400 : "Reservation is already completed"
+}
+
+put {
+  url: {{reservationUrl}}/api/reservations/1/complete
+  body: none
+  auth: none
+}

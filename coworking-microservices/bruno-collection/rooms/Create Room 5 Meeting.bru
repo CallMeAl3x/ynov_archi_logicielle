@@ -1,0 +1,21 @@
+meta {
+  name: Create Room 5 - Meeting Room Lyon
+  type: http
+  seq: 13
+}
+
+post {
+  url: {{roomUrl}}/api/rooms
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Salle Reunion Epsilon",
+    "city": "Lyon",
+    "capacity": 8,
+    "type": "MEETING_ROOM",
+    "hourlyRate": 35.00
+  }
+}

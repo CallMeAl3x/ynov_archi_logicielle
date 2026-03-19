@@ -1,0 +1,21 @@
+meta {
+  name: Create Room 4 - Open Space Paris
+  type: http
+  seq: 12
+}
+
+post {
+  url: {{roomUrl}}/api/rooms
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Open Space Delta",
+    "city": "Paris",
+    "capacity": 50,
+    "type": "OPEN_SPACE",
+    "hourlyRate": 10.00
+  }
+}

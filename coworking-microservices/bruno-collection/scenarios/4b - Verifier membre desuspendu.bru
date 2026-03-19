@@ -1,0 +1,16 @@
+meta {
+  name: 4b - Verifier membre desuspendu
+  type: http
+  seq: 8
+}
+
+docs {
+  ## Verification
+  Doit retourner false apres l'annulation d'une reservation.
+}
+
+get {
+  url: {{memberUrl}}/api/members/2/suspended
+  body: none
+  auth: none
+}

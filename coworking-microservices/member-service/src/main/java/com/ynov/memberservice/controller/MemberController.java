@@ -53,4 +53,9 @@ public class MemberController {
     public boolean isMemberSuspended(@PathVariable Long id) {
         return memberService.isSuspended(id);
     }
+
+    @GetMapping("/{id}/max-bookings")
+    public int getMaxBookings(@PathVariable Long id) {
+        return memberService.getMemberById(id).getMaxConcurrentBookings();
+    }
 }

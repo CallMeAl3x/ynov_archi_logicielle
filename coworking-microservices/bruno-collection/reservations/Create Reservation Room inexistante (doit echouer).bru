@@ -1,0 +1,24 @@
+meta {
+  name: Create Reservation Room inexistante (doit echouer)
+  type: http
+  seq: 9
+}
+
+docs {
+  Doit retourner 400 : "Room not found"
+}
+
+post {
+  url: {{reservationUrl}}/api/reservations
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "roomId": 999,
+    "memberId": 1,
+    "startDateTime": "2026-03-22T09:00:00",
+    "endDateTime": "2026-03-22T12:00:00"
+  }
+}

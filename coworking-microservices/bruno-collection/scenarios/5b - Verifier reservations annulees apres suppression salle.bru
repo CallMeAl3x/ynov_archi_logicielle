@@ -1,0 +1,16 @@
+meta {
+  name: 5b - Verifier reservations annulees apres suppression salle
+  type: http
+  seq: 10
+}
+
+docs {
+  ## Verification
+  Les reservations de la salle supprimee doivent avoir le statut CANCELLED.
+}
+
+get {
+  url: {{reservationUrl}}/api/reservations
+  body: none
+  auth: none
+}

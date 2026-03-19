@@ -66,6 +66,14 @@ public class ReservationService {
             throw new BusinessException("Member is suspended with id: " + request.getMemberId());
         }
 
+        // Verify member has not reached max concurrent bookings
+        int maxBookings = memberClient.getMaxBookings(request.getMemberId());
+        List<Reservation> activeReservations = reservationRepository
+                .findByMemberIdAndStatus(request.getMemberId(), ReservationStatus.CONFIRMED);
+        if (activeReservations.size() >= maxBookings) {
+            throw new BusinessException("Member has reached maximum concurrent bookings (" + maxBookings + ")");
+        }
+
         // Create reservation
         Reservation reservation = new Reservation(
                 request.getRoomId(),
@@ -78,14 +86,10 @@ public class ReservationService {
         // Mark room as unavailable
         roomClient.updateAvailability(request.getRoomId(), false);
 
-        // Check if member reached max bookings → suspend
-        List<Reservation> activeReservations = reservationRepository
-                .findByMemberIdAndStatus(request.getMemberId(), ReservationStatus.CONFIRMED);
-        // We'll send suspend event (member-service handles the quota check logic)
-        // For simplicity, we notify after each booking and let member-service decide
-        // But per the plan, we suspend when quota is reached
-        // Since we don't know the quota here, we just send the event for the member-service to handle
-        // Actually, let's keep it simple: always notify, member-service can track
+        // Suspend member if they reached max bookings after this reservation
+        if (activeReservations.size() + 1 >= maxBookings) {
+            kafkaProducer.sendMemberSuspendEvent(request.getMemberId().toString());
+        }
 
         return reservation;
     }
@@ -102,8 +106,8 @@ public class ReservationService {
         // Mark room as available again
         roomClient.updateAvailability(reservation.getRoomId(), true);
 
-        // Send unsuspend event if member had been suspended
-        kafkaProducer.sendMemberUnsuspendEvent(reservation.getMemberId().toString());
+        // Unsuspend member if they are now below max bookings
+        unsuspendIfBelowQuota(reservation.getMemberId());
 
         return reservation;
     }
@@ -120,6 +124,18 @@ public class ReservationService {
         // Mark room as available again
         roomClient.updateAvailability(reservation.getRoomId(), true);
 
+        // Unsuspend member if they are now below max bookings
+        unsuspendIfBelowQuota(reservation.getMemberId());
+
         return reservation;
+    }
+
+    private void unsuspendIfBelowQuota(Long memberId) {
+        int maxBookings = memberClient.getMaxBookings(memberId);
+        List<Reservation> activeReservations = reservationRepository
+                .findByMemberIdAndStatus(memberId, ReservationStatus.CONFIRMED);
+        if (activeReservations.size() < maxBookings) {
+            kafkaProducer.sendMemberUnsuspendEvent(memberId.toString());
+        }
     }
 }

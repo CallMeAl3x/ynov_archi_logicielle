@@ -1,0 +1,26 @@
+meta {
+  name: 2 - Reserver salle deja occupee (doit echouer)
+  type: http
+  seq: 2
+}
+
+docs {
+  ## Scenario
+  Apres le scenario 1, la salle 1 est occupee.
+  Cette requete doit retourner 400 : "Room is not available"
+}
+
+post {
+  url: {{reservationUrl}}/api/reservations
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "roomId": 1,
+    "memberId": 1,
+    "startDateTime": "2026-03-20T14:00:00",
+    "endDateTime": "2026-03-20T17:00:00"
+  }
+}

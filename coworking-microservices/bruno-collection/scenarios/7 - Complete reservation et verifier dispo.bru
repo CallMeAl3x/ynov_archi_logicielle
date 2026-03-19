@@ -1,0 +1,17 @@
+meta {
+  name: 7 - Complete reservation et verifier dispo
+  type: http
+  seq: 13
+}
+
+docs {
+  ## Scenario
+  Marquer une reservation comme COMPLETED.
+  La salle doit redevenir disponible (GET /api/rooms/{id}/available = true).
+}
+
+put {
+  url: {{reservationUrl}}/api/reservations/1/complete
+  body: none
+  auth: none
+}

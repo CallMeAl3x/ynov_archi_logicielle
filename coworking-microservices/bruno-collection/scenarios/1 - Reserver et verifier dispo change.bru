@@ -1,0 +1,28 @@
+meta {
+  name: 1 - Reserver et verifier dispo change
+  type: http
+  seq: 1
+}
+
+docs {
+  ## Scenario
+  1. Creer une salle (POST /api/rooms)
+  2. Creer un membre PRO (POST /api/members)
+  3. Executer cette requete pour reserver
+  4. Verifier que GET /api/rooms/1/available retourne false
+}
+
+post {
+  url: {{reservationUrl}}/api/reservations
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "roomId": 1,
+    "memberId": 1,
+    "startDateTime": "2026-03-20T09:00:00",
+    "endDateTime": "2026-03-20T12:00:00"
+  }
+}

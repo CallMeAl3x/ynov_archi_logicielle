@@ -1,0 +1,20 @@
+meta {
+  name: Create Reservation Room 2
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{reservationUrl}}/api/reservations
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "roomId": 2,
+    "memberId": 1,
+    "startDateTime": "2026-03-21T09:00:00",
+    "endDateTime": "2026-03-21T12:00:00"
+  }
+}

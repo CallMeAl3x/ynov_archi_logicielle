@@ -1,0 +1,17 @@
+meta {
+  name: 4a - Annuler reservation et desuspendre
+  type: http
+  seq: 7
+}
+
+docs {
+  ## Scenario desuspension
+  Annuler une reservation du membre BASIC (id reservation 2 ou 3).
+  Apres cela, GET /api/members/2/suspended doit retourner false.
+}
+
+put {
+  url: {{reservationUrl}}/api/reservations/2/cancel
+  body: none
+  auth: none
+}

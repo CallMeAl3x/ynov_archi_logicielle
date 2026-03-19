@@ -1,0 +1,18 @@
+meta {
+  name: 6a - Supprimer membre (propagation Kafka)
+  type: http
+  seq: 11
+}
+
+docs {
+  ## Scenario propagation Kafka
+  Supprimer un membre qui a des reservations.
+  Toutes ses reservations doivent etre supprimees automatiquement.
+  Verifier avec GET /api/reservations apres.
+}
+
+delete {
+  url: {{memberUrl}}/api/members/2
+  body: none
+  auth: none
+}

@@ -1,0 +1,17 @@
+meta {
+  name: 8 - Annuler reservation deja annulee (doit echouer)
+  type: http
+  seq: 14
+}
+
+docs {
+  ## Scenario State Pattern
+  Tenter d'annuler une reservation deja CANCELLED.
+  Doit retourner 400 : "Reservation is already cancelled"
+}
+
+put {
+  url: {{reservationUrl}}/api/reservations/2/cancel
+  body: none
+  auth: none
+}

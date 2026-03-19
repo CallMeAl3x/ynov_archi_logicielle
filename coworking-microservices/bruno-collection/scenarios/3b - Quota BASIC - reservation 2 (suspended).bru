@@ -1,0 +1,26 @@
+meta {
+  name: 3b - Quota BASIC - reservation 2 sur 2 (suspended)
+  type: http
+  seq: 4
+}
+
+docs {
+  ## Scenario quota BASIC (max 2)
+  Cette requete cree la 2eme reservation.
+  Apres cela, GET /api/members/2/suspended doit retourner true.
+}
+
+post {
+  url: {{reservationUrl}}/api/reservations
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "roomId": 3,
+    "memberId": 2,
+    "startDateTime": "2026-03-21T14:00:00",
+    "endDateTime": "2026-03-21T17:00:00"
+  }
+}

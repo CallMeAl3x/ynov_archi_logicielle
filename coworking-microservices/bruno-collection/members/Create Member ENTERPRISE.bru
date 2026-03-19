@@ -1,0 +1,19 @@
+meta {
+  name: Create Member ENTERPRISE
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{memberUrl}}/api/members
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "fullName": "Sophie Bernard",
+    "email": "sophie@example.com",
+    "subscriptionType": "ENTERPRISE"
+  }
+}

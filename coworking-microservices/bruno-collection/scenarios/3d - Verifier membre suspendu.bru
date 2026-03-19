@@ -1,0 +1,16 @@
+meta {
+  name: 3d - Verifier membre BASIC suspendu
+  type: http
+  seq: 6
+}
+
+docs {
+  ## Verification
+  Doit retourner true apres les 2 reservations du membre BASIC.
+}
+
+get {
+  url: {{memberUrl}}/api/members/2/suspended
+  body: none
+  auth: none
+}

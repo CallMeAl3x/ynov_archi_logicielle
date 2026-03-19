@@ -1,0 +1,26 @@
+meta {
+  name: 3a - Quota BASIC - reservation 1 sur 2
+  type: http
+  seq: 3
+}
+
+docs {
+  ## Scenario quota BASIC (max 2)
+  Prerequis : creer un membre BASIC (id 2) et au moins 2 salles disponibles
+  Cette requete cree la 1ere reservation. Le membre ne doit pas encore etre suspendu.
+}
+
+post {
+  url: {{reservationUrl}}/api/reservations
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "roomId": 2,
+    "memberId": 2,
+    "startDateTime": "2026-03-21T09:00:00",
+    "endDateTime": "2026-03-21T12:00:00"
+  }
+}

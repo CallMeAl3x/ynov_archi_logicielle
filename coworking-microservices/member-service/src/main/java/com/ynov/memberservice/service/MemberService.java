@@ -44,6 +44,7 @@ public class MemberService {
         member.setEmail(memberDetails.getEmail());
         member.setSubscriptionType(memberDetails.getSubscriptionType());
         member.setMaxConcurrentBookings(memberDetails.getSubscriptionType().getMaxBookings());
+        member.setSuspended(memberDetails.isSuspended());
         return memberRepository.save(member);
     }
 

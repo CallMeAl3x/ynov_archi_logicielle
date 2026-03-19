@@ -1,0 +1,26 @@
+meta {
+  name: 3c - Quota BASIC - reservation 3 (doit echouer)
+  type: http
+  seq: 5
+}
+
+docs {
+  ## Scenario quota BASIC (max 2)
+  Le membre BASIC est suspendu apres 2 reservations.
+  Cette requete doit retourner 400 : "Member is suspended"
+}
+
+post {
+  url: {{reservationUrl}}/api/reservations
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "roomId": 4,
+    "memberId": 2,
+    "startDateTime": "2026-03-22T09:00:00",
+    "endDateTime": "2026-03-22T12:00:00"
+  }
+}

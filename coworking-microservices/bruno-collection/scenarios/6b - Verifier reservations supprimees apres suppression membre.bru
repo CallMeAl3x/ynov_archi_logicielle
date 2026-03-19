@@ -1,0 +1,16 @@
+meta {
+  name: 6b - Verifier reservations supprimees apres suppression membre
+  type: http
+  seq: 12
+}
+
+docs {
+  ## Verification
+  Les reservations du membre supprime ne doivent plus exister.
+}
+
+get {
+  url: {{reservationUrl}}/api/reservations
+  body: none
+  auth: none
+}
