@@ -1,0 +1,21 @@
+meta {
+  name: Update Room
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{roomUrl}}/api/rooms/1
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Salle Alpha Renovee",
+    "city": "Paris",
+    "capacity": 15,
+    "type": "MEETING_ROOM",
+    "hourlyRate": 30.00
+  }
+}

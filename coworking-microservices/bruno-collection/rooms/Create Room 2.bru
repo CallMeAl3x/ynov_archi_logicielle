@@ -1,0 +1,21 @@
+meta {
+  name: Create Room 2
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{roomUrl}}/api/rooms
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Open Space Beta",
+    "city": "Lyon",
+    "capacity": 30,
+    "type": "OPEN_SPACE",
+    "hourlyRate": 15.00
+  }
+}

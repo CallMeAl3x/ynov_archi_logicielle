@@ -1,0 +1,11 @@
+meta {
+  name: Check Room Exists
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{roomUrl}}/api/rooms/1/exists
+  body: none
+  auth: none
+}

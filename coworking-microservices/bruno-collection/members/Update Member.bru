@@ -1,0 +1,19 @@
+meta {
+  name: Update Member
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{memberUrl}}/api/members/1
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "fullName": "Jean Dupont",
+    "email": "jean.dupont@example.com",
+    "subscriptionType": "ENTERPRISE"
+  }
+}
